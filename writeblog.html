@@ -14,16 +14,14 @@
     <style>
       
       body{
-        background-image: url("https://officesnapshots.com/wp-content/uploads/2019/04/deloitte-offices-lisbon-1024x683.jpg");
-        background-size: cover;
-        
-        background-repeat: no-repeat;
+        background-color:rgb(23, 22, 22);
+        font-family: 'Times New Roman', Times, serif;
         
       }
-      p,h1{
-        text-align: right;
+      p{
+        text-align:  center;
         font-size: 40px;
-        color: black;
+        color: white;
       }
       #Logo1{
         font-weight: bolder;
@@ -32,10 +30,13 @@
         color:lightgreen;
         font-weight: bolder;
       }
+      hr{
+        color: white;
+      }
     </style>
 
 </head>
-<body>
+<body >
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
       <div class="container-fluid">
         <a class="navbar-brand" href="index.html"><span id="Logo1">Deloitte<span id="Logo2">.</span></span></a>
@@ -59,19 +60,33 @@
       </div>
     </nav>
   
-    <div class="container-fluid d-flex justify-content-end" >  
-      <div class="d-flex flex-column">
-        <div>.</div><br>
-        <div class="display-3 text-dark align-content-end">Deloitte Blogs Page</div>
-        <div>Welcome to Deloitte Blog Project </div>
-        <a href="all_blogs.html" style="font-size: 20px;">Read Blog Posts</a>
-      </div>    
+    <p>.</p>
+    <p >Write your blog</p>
+    <p style="font-size: 20px;">Express yourself! Pen down your ideas here...</p>
+    <hr>
+    <div class="container">
+        <label for="titletext" class="text-light mt-3">Title</label>
+        <input type="text" id="titletext" placeholder="Please enter the Title" class="form-control bg-black text-light mt-3">
     </div>
+    <div class="container">
+        <label for="bodytext" class="text-light mt-3">Body</label>
+        <textarea id="bodytext" placeholder="Please enter the Body Content" class="form-control bg-black text-light mt-3" rows="5"></textarea>
+        <input type="button" id="blogsubmit" class="btn  text-light bg-black mt-3" value="submit">
+    </div>
+    
 
     <script>
+        let title;
+        $(document).ready(function(){
+             $("#blogsubmit").click(function(){
+                title=$("#titletext").val();
+                alert("Blog Data is Written.\n Title: " + title);
+             });
+        });
+
+
       const SearchB = () => {
         let id=$("#seachblog").val();
-
         location.href="blog.html"
       }
     </script>
