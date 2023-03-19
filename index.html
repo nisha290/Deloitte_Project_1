@@ -45,7 +45,7 @@
               <a class="nav-link" href="all_blogs.html">All Blogs</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="blog.html">Random Blog</a>
+              <a class="nav-link" href="blog.html" onclick="randonB()">Random Blog</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="writeblog.html" >Write Blog</a>
@@ -60,8 +60,9 @@
     </nav>
   
     <div class="container-fluid d-flex justify-content-end" >  
-      <div class="d-flex flex-column">
-        <div>.</div><br>
+      <div class="d-flex flex-column mt-5">
+        <!-- <div>.</div> -->
+        <br>
         <div class="display-3 text-dark align-content-end">Deloitte Blogs Page</div>
         <div>Welcome to Deloitte Blog Project </div>
         <a href="all_blogs.html" style="font-size: 20px;">Read Blog Posts</a>
@@ -69,11 +70,28 @@
     </div>
 
     <script>
-      const SearchB = () => {
-        let id=$("#seachblog").val();
+		const SearchB = () => {
+			let id=$("#seachblog").val();
+			
+			$.get(`https://jsonplaceholder.typicode.com/posts/${id}`, function (data) {
+                document.getElementById('titledis').innerHTML=data.title;
+            });
+            $.get(`https://jsonplaceholder.typicode.com/users/${id}`, function (data) {
+                document.getElementById('details').innerHTML=`Posted By: ${data.name} <br /> Contact: ${data.email} <br /> City: ${data.address.city} <br />`;
+            });
 
-        location.href="blog.html"
-      }
+			location.href="blog.html"
+		};
+
+     	 const randonB = () => {
+        let n =Math.round(Math.random() * 100);
+            $.get(`https://jsonplaceholder.typicode.com/posts/${n}`, function (data) {
+                document.getElementById('titledis').innerHTML=data.title;
+            });
+            $.get(`https://jsonplaceholder.typicode.com/users/${n}`, function (data) {
+                document.getElementById('details').innerHTML=`Posted By: ${data.name} <br /> Contact: ${data.email} <br /> City: ${data.address.city} <br />`;
+            });
+      	};
     </script>
 
 </body>

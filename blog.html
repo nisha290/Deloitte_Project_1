@@ -1,18 +1,92 @@
 <!DOCTYPE html>
 <html>
     <head>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" >
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
         <title>Blogs page</title>
-        <link rel="stylesheet" href="all_blogs.css">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+        <style>
+
+            #Logo1{
+                font-weight: bolder;
+            }
+            #Logo2{
+                color:lightgreen;
+                font-weight: bolder;
+            }
+            hr{
+                color: white;
+            }
+        </style>
     </head>
-    <body align="center">
-        <h1>Deloitte Blog Page</h1>
-        <p id="title"></p>
-        <img src="https://picsum.photos/seed/picsum/200/300" width="500px" height="300px" >
-        <hr>
-        <p id="user"></p>
-        <hr>
-        <p id="body"></p>
+    <body class="bg-black">
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="index.html"><span id="Logo1">Deloitte<span id="Logo2">.</span></span></a>
+              <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav me-auto ">
+                  <li class="nav-item">
+                    <a class="nav-link" href="all_blogs.html">All Blogs</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="blog.html" onclick="randonB()">Random Blog</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="writeblog.html" >Write Blog</a>
+                  </li>
+                </ul>
+                <form class="d-flex">
+                  <input class="form-control me-2" type="number" id="seachblog" placeholder="Search a Blog">
+                  <button class="btn btn-outline-success" type="submit" onclick="SearchB()">Search</button>
+                </form>
+              </div>
+            </div>
+          </nav>
+        <div class="container mx-5 px-5 justify-content-center">
+            <div class="container-fluid d-flex justify-content-center text-light display-6 px-3 mt-5" >Blog Page </div>
+            <div class="container-fluid d-flex justify-content-center text-light display-6 px-3 mt-5" id="titledis"></div>
+            <div class="container d-flex justify-content-center">
+                <img src="https://picsum.photos/seed/picsum/200/300" width="500px" height="300px" >
+            </div>
+            
+            <hr>
+
+            <div class="container">
+                <div class="container d-flex justify-content-start p-2 text-light" id="details">
+            </div>
+         </div>  
+
+         <script>
+
+
+
+            const SearchB = () => {
+                let id=$("#seachblog").val();
+
+                $.get(`https://jsonplaceholder.typicode.com/posts/${id}`, function (data) {
+                document.getElementById('titledis').innerHTML=data.title;
+                });
+                $.get(`https://jsonplaceholder.typicode.com/users/${id}`, function (data) {
+                    document.getElementById('details').innerHTML=`Posted By: ${data.name} <br /> Contact: ${data.email} <br /> City: ${data.address.city} <br />`;
+                });
+
+                location.href="blog.html"
+            };
+
+            const randonB = () => {
+                let n =Math.round(Math.random() * 100);
+                $.get(`https://jsonplaceholder.typicode.com/posts/${n}`, function (data) {
+                    document.getElementById('titledis').innerHTML=data.title;
+                });
+                $.get(`https://jsonplaceholder.typicode.com/users/${n}`, function (data) {
+                    document.getElementById('details').innerHTML=`Posted By: ${data.name} <br /> Contact: ${data.email} <br /> City: ${data.address.city} <br />`;
+                });
+                    
+            };
+         </script>
     </body>
 </html>

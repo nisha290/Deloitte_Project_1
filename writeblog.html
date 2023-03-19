@@ -33,6 +33,9 @@
       hr{
         color: white;
       }
+      #bodytext, #titletext{
+        color: white;
+      }
     </style>
 
 </head>
@@ -46,7 +49,7 @@
               <a class="nav-link" href="all_blogs.html">All Blogs</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="blog.html">Random Blog</a>
+              <a class="nav-link" href="blog.html" onclick="randonB()">Random Blog</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="writeblog.html" >Write Blog</a>
@@ -61,7 +64,7 @@
     </nav>
   
     <p>.</p>
-    <p >Write your blog</p>
+    <p class="container mt-6" >Write your blog</p>
     <p style="font-size: 20px;">Express yourself! Pen down your ideas here...</p>
     <hr>
     <div class="container">
@@ -87,8 +90,26 @@
 
       const SearchB = () => {
         let id=$("#seachblog").val();
+
+		$.get(`https://jsonplaceholder.typicode.com/posts/${id}`, function (data) {
+                document.getElementById('titledis').innerHTML=data.title;
+        });
+        $.get(`https://jsonplaceholder.typicode.com/users/${id}`, function (data) {
+            document.getElementById('details').innerHTML=`Posted By: ${data.name} <br /> Contact: ${data.email} <br /> City: ${data.address.city} <br />`;
+        });
+
         location.href="blog.html"
       }
+
+      const randonB = () => {
+        let n =Math.round(Math.random() * 100);
+            $.get(`https://jsonplaceholder.typicode.com/posts/${n}`, function (data) {
+                document.getElementById('titledis').innerHTML=data.title;
+            });
+            $.get(`https://jsonplaceholder.typicode.com/users/${n}`, function (data) {
+               document.getElementById('details').innerHTML=`Posted By: ${data.name} <br /> Contact: ${data.email} <br /> City: ${data.address.city} <br />`;
+            });
+        };
     </script>
 
 </body>
