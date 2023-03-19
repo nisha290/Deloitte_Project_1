@@ -10,7 +10,10 @@
         <title>Blogs page</title>
 
         <style>
-
+            body{
+                background-color:rgb(23, 22, 22);
+                font-family: 'Times New Roman', Times, serif;  
+            }
             #Logo1{
                 font-weight: bolder;
             }
@@ -42,7 +45,7 @@
                 </ul>
                 <form class="d-flex">
                   <input class="form-control me-2" type="number" id="seachblog" placeholder="Search a Blog">
-                  <button class="btn btn-outline-success" type="submit" onclick="SearchB()">Search</button>
+                  <button class="btn btn-outline-success" type="submit" onclick="SearchB()"><a href="blog.html" style="text-decoration: none; color: green;">Search</a></button>
                 </form>
               </div>
             </div>
@@ -63,16 +66,16 @@
 
         <script>
 
-            
+
 
             const SearchB = () => {
                 let id=$("#seachblog").val();
 
                 $.get(`https://jsonplaceholder.typicode.com/posts/${id}`, function (data) {
-                document.getElementById('titledis').innerHTML=data.title;
+                    $("#titledis").text(data.title);
                 });
                 $.get(`https://jsonplaceholder.typicode.com/users/${id}`, function (data) {
-                    document.getElementById('details').innerHTML=`Posted By: ${data.name} <br /> Contact: ${data.email} <br /> City: ${data.address.city} <br />`;
+                    $("#details").text(`Posted By: ${data.name} <br /> Contact: ${data.email} <br /> City: ${data.address.city} <br />`);
                 });
 
                 location.href="blog.html"
@@ -81,12 +84,11 @@
             const randonB = () => {
                 let n =Math.round(Math.random() * 100);
                 $.get(`https://jsonplaceholder.typicode.com/posts/${n}`, function (data) {
-                    document.getElementById('titledis').innerHTML=data.title;
+                    $("#titledis").text(data.title);
                 });
                 $.get(`https://jsonplaceholder.typicode.com/users/${n}`, function (data) {
-                    document.getElementById('details').innerHTML=`Posted By: ${data.name} <br /> Contact: ${data.email} <br /> City: ${data.address.city} <br />`;
-                });
-                    
+                    $("#details").text(`Posted By: ${data.name} <br /> Contact: ${data.email} <br /> City: ${data.address.city} <br />`);
+                });   
             };
         </script>
     </body>
