@@ -72,7 +72,7 @@
     <script>
 		const SearchB = () => {
 			let id=$("#seachblog").val();
-			
+
 			$.get(`https://jsonplaceholder.typicode.com/posts/${id}`, function (data) {
                 document.getElementById('titledis').innerHTML=data.title;
             });
@@ -83,7 +83,7 @@
 			location.href="blog.html"
 		};
 
-     	 const randonB = () => {
+     	const randonB = () => {
         let n =Math.round(Math.random() * 100);
             $.get(`https://jsonplaceholder.typicode.com/posts/${n}`, function (data) {
                 document.getElementById('titledis').innerHTML=data.title;
