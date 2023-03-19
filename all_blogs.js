@@ -1,7 +1,7 @@
 const url = "https://jsonplaceholder.typicode.com/posts/";
 
 $(document).ready(function(){
-    $("a").click(function(){
-        
+    $("[href]").click(function(){
+        console.log("Hello");
     });
 });
